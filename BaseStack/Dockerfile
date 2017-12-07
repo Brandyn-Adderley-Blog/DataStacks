@@ -1,18 +1,20 @@
-FROM python:3.6.3-alpine
+FROM python:3.6.3-slim
 
 #Run an update
-RUN apk update add bash wget
+RUN apt-get update
 
 #Create a user ds
 RUN adduser -D -S -h /home/ds -s /bin/ash ds
 
-#RUN adduser ds sudo
+#install Jupyter notebook
+RUN pip install jupyter
 
 #Set Variables
 ENV HOME=/home/ds
-ENV SHELL=/bin/ash
+ENV SHELL=/bin/bash
 ENV USER=ds
 VOLUME /home/ds
 WORKDIR /home/ds
 
-CMD ["/bin/ash"]
+#run the jupyter notebook
+CMD jupyter-notebook --no-browser --port 8888 --ip='*' --allow-root
