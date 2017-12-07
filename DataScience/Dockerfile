@@ -8,23 +8,19 @@ RUN apt-get update
 RUN useradd --create-home --home-dir /home/ds --shell /bin/bash ds
 RUN adduser ds sudo
 
+#Make directory for notebooks
+RUN mkdir -p /home/ds/notebooks
 
-#Install Python packages
+#Make the working directory
 WORKDIR /home/ds
 
+#Make config folder for the requirements text file and the jupyter script.
 RUN mkdir -p /home/ds/config
 ADD requirements.txt /home/ds/config
-ADD run_jupyter.sh /home/ds/config
-RUN chmod +x /home/ds
-RUN chown ds /home/ds
-RUN chmod +x /home/ds/config/run_jupyter.sh
-RUN chown ds /home/ds/config/run_jupyter.sh
-RUN cd config
+
+#Install the packages from the requirements file and clean up
 RUN conda install --yes --file config/requirements.txt  && \
     conda clean --yes --all
-
-
-RUN mkdir -p /home/ds/notebooks
 
 #Set Variables
 ENV HOME=/home/ds
@@ -33,4 +29,4 @@ ENV USER=ds
 VOLUME /home/ds
 
 #Startup the Jupyter notebook when this runs.
-CMD ["/home/ds/config/run_jupyter.sh"]
+CMD jupyter-notebook --no-browser --port 8888 --ip='*' --allow-root
