@@ -1,0 +1,17 @@
+numpy==1.13.3
+pandas==0.20.3
+scipy==0.19.1
+scikit-learn==0.19.1
+scikit-image==0.13.0
+statsmodels==0.8.0
+sqlalchemy==1.1.13
+seaborn==0.8.0
+jupyter==1.0.0
+jupyter_client
+jupyter_console
+jupyter_core
+psycopg2==2.7.3.1
+pymongo==3.4.0
+mysql-connector-python==2.0.4
+redis==3.2.0
+redis-py==2.10.5
