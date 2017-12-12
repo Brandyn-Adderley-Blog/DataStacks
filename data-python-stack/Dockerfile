@@ -14,7 +14,7 @@ RUN mkdir -p /home/ds/notebooks
 #Make the working directory
 WORKDIR /home/ds
 
-#Make config folder for the requirements text file and the jupyter script.
+#Make config folder for the requirements text file
 RUN mkdir -p /home/ds/config
 ADD requirements.txt /home/ds/config
 
