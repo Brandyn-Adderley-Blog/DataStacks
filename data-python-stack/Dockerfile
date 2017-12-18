@@ -23,7 +23,7 @@ RUN conda install --yes --file config/requirements.txt  && \
     conda clean --yes --all
 
 #Install Django and Django Rest Framework through pip
-RUN pip install django==2.0 djangorestframework==3.7
+RUN pip install django==2.0 djangorestframework==3.7 gunicorn==19.7.0
 
 #Set Variables
 ENV HOME=/home/ds
